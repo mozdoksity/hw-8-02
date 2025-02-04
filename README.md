@@ -52,22 +52,22 @@
 pipeline {
  agent any
  stages {
-  stage('Git') {
-   steps {git 'https://github.com/netology-code/sdvps-materials.git'}
+    stage('Git') {
+   steps {git branch: 'main', url: 'https://github.com/mozdoksity/sdvps-materials.git'}
   }
-  stage('Test') {
+   stage('Test') {
    steps {
-    sh 'go test .'
+    sh '/usr/local/go/bin/go test .'
    }
   }
   stage('Build') {
    steps {
-    sh 'docker build . -t ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER'
+    sh 'docker build . -t ubuntu-bionic:8082/hello-world:$BUILD_NUMBER'
    }
   }
   stage('Push') {
    steps {
-    sh 'docker login ubuntu-bionic:8082 -u admin -p admin && docker push ubuntu-bionic:8082/hello-world:v$BUILD_NUMBER && docker logout'   }
+    sh 'docker login ubuntu-bionic:8082 -u admin -p admin && docker push ubuntu-bionic:8082/hello-world:$BUILD_NUMBER && docker logout'   }
   }
  }
 }
