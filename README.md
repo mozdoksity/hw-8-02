@@ -72,8 +72,8 @@ pipeline {
 }
 
 
-
-
+<img src = "img/4.jpg" width = 100%>
+<img src = "img/5.jpg" width = 100%>
 * ![вывод](txt/20)
 
 
